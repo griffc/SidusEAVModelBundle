@@ -2,7 +2,7 @@
 
 namespace Sidus\EAVModelBundle\Request\ParamConverter;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,12 +17,12 @@ abstract class AbstractBaseParamConverter implements ParamConverterInterface
      * Stores the object in the request.
      *
      * @param Request        $request
-     * @param ParamConverter $configuration Contains the name, class and options of the object
+     * @param ConfigurationInterface $configuration Contains the name, class and options of the object
      *
      * @return bool True if the object has been successfully set, else false
      * @throws \InvalidArgumentException
      */
-    public function apply(Request $request, ParamConverter $configuration)
+    public function apply(Request $request, ConfigurationInterface $configuration)
     {
         $param = $configuration->getName();
 
@@ -44,11 +44,11 @@ abstract class AbstractBaseParamConverter implements ParamConverterInterface
     /**
      * Checks if the object is supported.
      *
-     * @param ParamConverter $configuration Should be an instance of ParamConverter
+     * @param ConfigurationInterface $configuration Should be an instance of ConfigurationInterface
      *
      * @return bool True if the object is supported, else false
      */
-    public function supports(ParamConverter $configuration)
+    public function supports(ConfigurationInterface $configuration)
     {
         return $configuration->getClass() && is_a($configuration->getClass(), $this->getClass(), true);
     }

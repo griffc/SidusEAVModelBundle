@@ -2,7 +2,7 @@
 
 namespace Sidus\EAVModelBundle\Request\ParamConverter;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface;
 use Sidus\EAVModelBundle\Entity\DataInterface;
 use Sidus\EAVModelBundle\Entity\DataRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,12 +31,12 @@ class DataParamConverter extends AbstractBaseParamConverter
      * Stores the object in the request.
      *
      * @param Request        $request       The request
-     * @param ParamConverter $configuration Contains the name, class and options of the object
+     * @param ConfigurationInterface $configuration Contains the name, class and options of the object
      *
      * @return bool True if the object has been successfully set, else false
      * @throws \InvalidArgumentException
      */
-    public function apply(Request $request, ParamConverter $configuration)
+    public function apply(Request $request, ConfigurationInterface $configuration)
     {
         $originalName = $configuration->getName();
         if ($request->attributes->has('id')) {

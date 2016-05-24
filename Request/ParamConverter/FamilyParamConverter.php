@@ -2,7 +2,7 @@
 
 namespace Sidus\EAVModelBundle\Request\ParamConverter;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ConfigurationInterface;
 use Sidus\EAVModelBundle\Configuration\FamilyConfigurationHandler;
 use Sidus\EAVModelBundle\Exception\MissingFamilyException;
 use Sidus\EAVModelBundle\Model\FamilyInterface;
@@ -30,12 +30,12 @@ class FamilyParamConverter extends AbstractBaseParamConverter
      * Stores the object in the request.
      *
      * @param Request        $request       The request
-     * @param ParamConverter $configuration Contains the name, class and options of the object
+     * @param ConfigurationInterface $configuration Contains the name, class and options of the object
      *
      * @return bool True if the object has been successfully set, else false
      * @throws \InvalidArgumentException
      */
-    public function apply(Request $request, ParamConverter $configuration)
+    public function apply(Request $request, ConfigurationInterface $configuration)
     {
         $originalName = $configuration->getName();
         if ($request->attributes->has('familyCode')) {
